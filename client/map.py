@@ -52,10 +52,11 @@ class Map:
         """
         pass
 
+# TODO : create a class for all tile
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(".\image\wall.png").convert_alpha() # TODO : create wall.png
+        self.image = pygame.image.load(".\image\wall.png").convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.y = TILE_SIZE * y
         self.rect.x = TILE_SIZE * x
@@ -63,7 +64,7 @@ class Wall(pygame.sprite.Sprite):
 class Ground(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(".\image\ground.png").convert_alpha() # TODO : create ground.png
+        self.image = pygame.image.load(".\image\ground.png").convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.y = TILE_SIZE * y
         self.rect.x = TILE_SIZE * x

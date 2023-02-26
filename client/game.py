@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-from map import Map
+from map import *
 from constants import *
 
 class Game:
@@ -29,6 +29,8 @@ class Game:
         # vérification des collisions et autre
         self.map = Map()
         self.map.load()
+        self.map.list_sprite.update()
+        self.map.list_sprite.draw(self.screen)
 
     def run(self):
         clock = pygame.time.Clock()
@@ -41,7 +43,7 @@ class Game:
             self.update()
             pygame.display.flip()
 
-            # event manager
+            # closing the window without crashing the game
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False # bloque l'entré dans la boucle de jeu
