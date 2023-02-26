@@ -1,11 +1,12 @@
 import pygame, sys
 from pygame.locals import *
 from map import Map
+from constants import *
 
 class Game:
     def __init__(self):
         # fenêtre du jeu
-        self.scr_size = (900, 600)
+        self.scr_size = (scr_width, scr_height)
         self.screen = pygame.display.set_mode(self.scr_size)
         pygame.display.set_caption("Multiplayer Roguelike [v1]")
 

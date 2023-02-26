@@ -2,9 +2,9 @@
 Pillow ressources : https://stackoverflow.com/questions/138250/how-to-read-the-rgb-value-of-a-given-pixel-in-python
 
 """
-
 import pygame
 from PIL import Image
+from constants import *
 
 class Map:
     def __init__(self):
@@ -31,10 +31,14 @@ class Map:
         for x in range(self.map.size[0]):
             for y in range(self.map.size[1]):
                 #print (self.pixels[x,y])  # Get the RGBA Value of the a pixel of an image
-                if self.pixels[x,y] == (0,0,0): # TODO : declare constant for map_img_color
+                # TODO : declare constant for map_img_color
+                if self.pixels[x,y] == BLACK: 
                     wall = Wall(x, y)
                     self.list_wall.add(wall)
                     self.list_sprite.add(wall)
+                if self.pixels[x,y] == WHITE: 
+                    ground = Ground(x, y)
+                    self.list_sprite.add(ground)
                 
         
         #pix[x,y] = value  # Set the RGBA Value of the image (tuple)
@@ -53,5 +57,13 @@ class Wall(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(".\image\wall.png").convert_alpha() # TODO : create wall.png
         self.rect = self.image.get_rect()
-        self.rect.y = 8 * y # TODO : change the number by a variable (constant)
-        self.rect.x = 8 * x
+        self.rect.y = TILE_SIZE * y
+        self.rect.x = TILE_SIZE * x
+
+class Ground(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(".\image\ground.png").convert_alpha() # TODO : create ground.png
+        self.rect = self.image.get_rect()
+        self.rect.y = TILE_SIZE * y
+        self.rect.x = TILE_SIZE * x
