@@ -14,6 +14,10 @@ class Game:
         # dessiner les groupe de calques Map ?
         
     def handle_input(self):
+        """
+        The client get the input and send them to the server,
+        then the server execute stuff according to the input
+        """
         pressed = pygame.key.get_pressed()
 
         if pressed[pygame.K_UP]:
@@ -52,5 +56,6 @@ class Game:
             clock.tick(60) # limite le FPS à 60
 
         # éteind tout
+        # must disconect the client of the server
         pygame.quit() # arret pygame
         sys.exit()  # arret script

@@ -30,8 +30,7 @@ class Map:
 
         for x in range(self.map.size[0]):
             for y in range(self.map.size[1]):
-                #print (self.pixels[x,y])  # Get the RGBA Value of the a pixel of an image
-                # TODO : declare constant for map_img_color
+                # TODO : work on tile merge with linking tile texture
                 if self.pixels[x,y] == BLACK: 
                     wall = Wall(x, y)
                     self.list_wall.add(wall)
@@ -39,20 +38,19 @@ class Map:
                 if self.pixels[x,y] == WHITE: 
                     ground = Ground(x, y)
                     self.list_sprite.add(ground)
-                
-        
-        #pix[x,y] = value  # Set the RGBA Value of the image (tuple)
-        #im.save('alive_parrot.png')  # Save the modified pixels as .png
-
-    def draw(self):
-        """
-        draw the map on the pygame window
-        
-        (might move this method to the game class ...) 
-        """
-        pass
 
 # TODO : create a class for all tile
+class Tiles(pygame.sprite.Sprite):
+    """
+    Class made for loading a tile set and add tile 
+    to the sprite group and collision groupe.
+
+    All the diffrent tile will be a child of the Tiles class, and may have
+    there own parameter like collision, special interaction ???
+    """
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
