@@ -6,3 +6,8 @@ scr_height = TILE_SIZE * 48
 # COLOR (from Pico8 color palette):
 BLACK = (0,0,0)
 WHITE = (255,241,232)
+
+COLOR = [
+    (0,0,0),        # Black
+    (255,241,232)   # White
+]
