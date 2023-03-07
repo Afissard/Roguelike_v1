@@ -10,7 +10,7 @@ class Character:
         - mental health : 'default_stat', 'current_statut'
         - actions (attacks, items, interaction with the rest of the group)
     """
-    def __init__(self, name):
+    def __init__(self, name:str):
         self.name = name or "nameless" # must be a string
         self.race = ""
         self.classe = ""

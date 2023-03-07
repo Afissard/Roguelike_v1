@@ -1,9 +1,11 @@
 import pygame, sys
 from pygame.locals import *
 from map import *
+from entity import *
+#from character import *
 from constants import *
 
-class Game:
+class Game():
     def __init__(self):
         # fenêtre du jeu
         self.scr_size = (scr_width, scr_height)
@@ -30,10 +32,10 @@ class Game:
 
     def update(self):
         # vérification des collisions et autre
-        self.map = Map()
-        self.map.load()
-        self.map.list_sprite.update()
-        self.map.list_sprite.draw(self.screen)
+        self.Map = Map()
+        self.Map.load()
+        self.Map.list_sprite.update()
+        self.Map.list_sprite.draw(self.screen)
 
     def run(self):
         clock = pygame.time.Clock()

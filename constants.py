@@ -1,3 +1,5 @@
+import pygame
+
 # Tiles and Window setting
 TILE_SIZE = 16
 scr_width = TILE_SIZE * 64
@@ -8,3 +10,5 @@ COLOR = [
     (0,0,0),        # Black
     (255,241,232)   # White
 ]
+
+list_wall = pygame.sprite.Group()

@@ -6,13 +6,14 @@ import pygame
 from PIL import Image
 from constants import *
 
-class Map:
+class Map():
     def __init__(self):
         self.img_input = ".\image\default_map.png"
-
-        self.list_objet = pygame.sprite.Group()
-        self.list_wall = pygame.sprite.Group()
+        
+        # will be move to the constants file ?
         self.list_sprite = pygame.sprite.Group()
+        #self.list_objet = pygame.sprite.Group()
+        #self.list_wall = pygame.sprite.Group()
     
     def generate(self):
         """
@@ -48,13 +49,19 @@ class Tile(pygame.sprite.Sprite):
     """
     def __init__(self, x, y, tile_id):
         pygame.sprite.Sprite.__init__(self)
+        self.x, self.y = x, y
         self.id = tile_id
-        self.tile_data = { 
-            # id : texture path, collision
-            1 : [".\image\wall.png", True],
-            2 : [".\image\ground.png", False]
+        self.tile_data = {
+            # id : texture path,        collision
+            1 : [".\image\wall.png",    True],
+            2 : [".\image\ground.png",  False]
         }
+        # load texture
         self.image = pygame.image.load(self.tile_data[self.id][0]).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = TILE_SIZE * x
         self.rect.y = TILE_SIZE * y
+
+        # add collision
+        if self.tile_data[self.id][1] == True :
+            list_wall.add(self)
