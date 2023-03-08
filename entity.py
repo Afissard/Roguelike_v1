@@ -1,7 +1,7 @@
 import pygame
 from constants import *
 
-class entity(pygame.sprite.Sprite):
+class Entity(pygame.sprite.Sprite):
     """
     Entity class for the player and other entity (enemy, teammate, etc)
     """
@@ -15,28 +15,44 @@ class entity(pygame.sprite.Sprite):
         #     "left" :  self.get_image(32, 0),
         #     "right" : self.get_image(48, 0)
         # }
-        self.rect.y = None
-        self.rect.x = None
+        self.x = 64
+        self.y = 64
+        self.rect.x = TILE_SIZE * self.x
+        self.rect.y = TILE_SIZE * self.y
         self.direction = '-'
         self.speed = 1.5
+
+        list_sprite.add(self)
+    
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
     
     def update(self):
         current_x = self.rect.x
         current_y = self.rect.y
-        if self.direction == 'G':
-            self.rect.x -= TILE_SIZE
+        if self.direction == 'LEFT':
+            self.rect.x -= self.speed
             self.direction = '-'
-        elif self.direction == 'D':
-            self.rect.x += TILE_SIZE
+        elif self.direction == 'RIGHT':
+            self.rect.x += self.speed
             self.direction = '-'
-        elif self.direction == 'H':
-            self.rect.y -= TILE_SIZE
+        elif self.direction == 'UP':
+            self.rect.y -= self.speed
             self.direction = '-'
-        elif self.direction == 'B':
-            self.rect.y += TILE_SIZE
+        elif self.direction == 'DOWN':
+            self.rect.y += self.speed
             self.direction = '-'
 
-        list_wall = pygame.sprite.spritecollide(self, list_wall, False)
-        if len(list_wall) > 0:
+        # collision system
+        list_collided_wall = pygame.sprite.spritecollide(self, list_wall, False)
+        if len(list_collided_wall) > 0:
             self.rect.x = current_x
             self.rect.y = current_y
+
+class Player(Entity):
+    """
+    The Player class inherits from the Entity class
+    """
+    def __init__(self) -> None:
+        Entity.__init__(self)
+        print("player created")

@@ -9,11 +9,6 @@ from constants import *
 class Map():
     def __init__(self):
         self.img_input = ".\image\default_map.png"
-        
-        # will be move to the constants file ?
-        self.list_sprite = pygame.sprite.Group()
-        #self.list_objet = pygame.sprite.Group()
-        #self.list_wall = pygame.sprite.Group()
     
     def generate(self):
         """
@@ -34,7 +29,7 @@ class Map():
                 for tile_id in range(len(COLOR)):
                     if self.pixels[x,y] == COLOR[tile_id]:
                         tile = Tile(x,y, tile_id +1)
-                        self.list_sprite.add(tile)
+                        list_sprite.add(tile)
 
 class Tile(pygame.sprite.Sprite):
     """
@@ -59,8 +54,8 @@ class Tile(pygame.sprite.Sprite):
         # load texture
         self.image = pygame.image.load(self.tile_data[self.id][0]).convert_alpha()
         self.rect = self.image.get_rect()
-        self.rect.x = TILE_SIZE * x
-        self.rect.y = TILE_SIZE * y
+        self.rect.x = TILE_SIZE * self.x
+        self.rect.y = TILE_SIZE * self.y
 
         # add collision
         if self.tile_data[self.id][1] == True :

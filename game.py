@@ -12,6 +12,10 @@ class Game():
         self.screen = pygame.display.set_mode(self.scr_size)
         pygame.display.set_caption("Multiplayer Roguelike [v1]")
 
+        
+        self.Map = Map()
+        self.Player = Player()
+
         # définir une liste pour stocker les collisions, voir Map
         # dessiner les groupe de calques Map ?
         
@@ -22,20 +26,24 @@ class Game():
         pressed = pygame.key.get_pressed()
 
         if pressed[pygame.K_UP]:
-            print("up")
+            self.Player.direction = "UP"
         elif pressed[pygame.K_DOWN]:
-            print("down")
+            self.Player.direction = "DOWN"
         elif pressed[pygame.K_LEFT]:
-            print("left")
+            self.Player.direction = "LEFT"
         elif pressed[pygame.K_RIGHT]:
-            print("right")
+            self.Player.direction = "RIGHT"
 
     def update(self):
         # vérification des collisions et autre
-        self.Map = Map()
         self.Map.load()
-        self.Map.list_sprite.update()
-        self.Map.list_sprite.draw(self.screen)
+        list_sprite.update()
+        list_sprite.draw(self.screen)
+
+        print(list_sprite.sprites, list_wall.sprites)
+        list_sprite.empty() # prevent memory overflow
+        list_wall.empty()
+        #self.Player.draw(self.screen)
 
     def run(self):
         clock = pygame.time.Clock()
@@ -52,7 +60,8 @@ class Game():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False # bloque l'entré dans la boucle de jeu
-        
+
+            
             pygame.display.update()
             clock.tick(60) # limite le FPS à 60
 
