@@ -1,6 +1,6 @@
 # My Roguelike version n°1 :
 
-The objective of this test is to create a demo that be run on a raspberry or any other low spec computer.
+The objective of this project is to create a (finished) game that be run on a raspberry or any other low spec computer.
 
 # TODO :
 - create a player
