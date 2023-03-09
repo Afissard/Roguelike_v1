@@ -56,3 +56,4 @@ class Player(Entity):
     def __init__(self) -> None:
         Entity.__init__(self)
         print("player created")
+        # there will be more soon...
