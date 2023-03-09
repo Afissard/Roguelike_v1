@@ -15,12 +15,12 @@ class Entity(pygame.sprite.Sprite):
         #     "left" :  self.get_image(32, 0),
         #     "right" : self.get_image(48, 0)
         # }
-        self.x = 64
-        self.y = 64
-        self.rect.x = TILE_SIZE * self.x
-        self.rect.y = TILE_SIZE * self.y
+        self.x = 1
+        self.y = 1
+        self.rect.x = TILE_SIZE
+        self.rect.y = TILE_SIZE
         self.direction = '-'
-        self.speed = 1.5
+        self.speed = 4
 
         list_sprite.add(self)
     
@@ -48,6 +48,8 @@ class Entity(pygame.sprite.Sprite):
         if len(list_collided_wall) > 0:
             self.rect.x = current_x
             self.rect.y = current_y
+        
+        #print(self.rect.x, self.rect.y)
 
 class Player(Entity):
     """

@@ -11,6 +11,7 @@ COLOR = [
     (255,241,232)   # White
 ]
 
+# group of sprite and other
 list_sprite = pygame.sprite.Group()
 list_wall = pygame.sprite.Group()
 #list_objet = pygame.sprite.Group()
