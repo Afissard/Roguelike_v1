@@ -13,8 +13,8 @@ The objective of this project is to create a (finished) game that be run on a ra
 
 # To run the game :
 In a terminal (at the root of the project)
-activate the venv : Scripts\activate
-run the game : py main.py
+- activate the venv : Scripts\activate
+- run the game : py main.py
 
 when you are done :
-deactivate the venv : Scripts\deactivate
+- deactivate the venv : Scripts\deactivate
