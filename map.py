@@ -9,6 +9,7 @@ from constants import *
 class Map():
     def __init__(self):
         self.img_input = ".\image\default_map.png"
+        self.need_load = True
     
     def generate(self):
         """
@@ -21,15 +22,18 @@ class Map():
         method to load and convert the png map into data to display 
         the map (wall, object, player and ennemis position, etc)
         """
-        self.map = Image.open(self.img_input)
-        self.pixels = self.map.load()
+        if self.need_load == True:
+            self.map = Image.open(self.img_input)
+            self.pixels = self.map.load()
 
-        for x in range(self.map.size[0]):
-            for y in range(self.map.size[1]):
-                for tile_id in range(len(COLOR)):
-                    if self.pixels[x,y] == COLOR[tile_id]:
-                        tile = Tile(x,y, tile_id +1)
-                        list_sprite.add(tile)
+            for x in range(self.map.size[0]):
+                for y in range(self.map.size[1]):
+                    for tile_id in range(len(COLOR)):
+                        if self.pixels[x,y] == COLOR[tile_id]:
+                            tile = Tile(x,y, tile_id +1)
+                            list_sprite.add(tile)
+            
+            self.need_load = False # to change when generating a new level
 
 class Tile(pygame.sprite.Sprite):
     """
