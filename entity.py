@@ -15,9 +15,9 @@ class Entity(pygame.sprite.Sprite):
         #     "left" :  self.get_image(32, 0),
         #     "right" : self.get_image(48, 0)
         # }
-        self.x = 1
+        self.x = 1 # real position for the game
         self.y = 1
-        self.rect.x = TILE_SIZE
+        self.rect.x = TILE_SIZE # virtual position for the camera (position draw on sreen)
         self.rect.y = TILE_SIZE
         self.direction = '-'
         self.speed = 4
