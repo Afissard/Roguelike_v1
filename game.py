@@ -11,7 +11,7 @@ class Game():
         self.scr_size = (scr_width, scr_height)
         self.screen = pygame.display.set_mode(self.scr_size)
         pygame.display.set_caption("Multiplayer Roguelike [v1]")
-        self.cp437 = pygame.font.SysFont(".\\font\PerfectDOSVGA437.ttf", 24) # font
+        self.cp437 = pygame.font.Font("font\PerfectDOSVGA437.ttf", 16) # font
         
         self.Map = Map()
         self.Player = Player()
@@ -22,16 +22,14 @@ class Game():
     def show_debug_info(self):
         # Titre
         debug_title = "Debug Info :"
-        debug_disp = self.cp437.render(debug_title, False, (0,200,0))
-        self.screen.blit(debug_disp, (scr_width -128, 0))
         # FPS
-        fps_str = str(int(self.clock.get_fps())) + " fps"
-        fps_disp = self.cp437.render(fps_str, False, (0,200,0))
-        self.screen.blit(fps_disp, (scr_width -128, 20))
+        fps_str = str(int(self.clock.get_fps())) + " FPS"
         # Player coordinates
         player_coord_str = "x:" + str(self.Player.rect.x/TILE_SIZE) +" y:" + str(self.Player.rect.y/TILE_SIZE)
-        player_coord_disp = self.cp437.render(player_coord_str, False, (0,200,0))
-        self.screen.blit(player_coord_disp, (scr_width -128, 35))
+
+        debug_info = debug_title+"\n"+fps_str+"\n"+player_coord_str
+        debug_disp = self.cp437.render(debug_info, False, COLOR[3])
+        self.screen.blit(debug_disp, (scr_width -TILE_SIZE*8, 0))
 
     def handle_input(self):
         """
@@ -49,20 +47,22 @@ class Game():
             self.Player.direction = "RIGHT"
 
     def update(self):
-        self.screen.fill((0,0,0))
-        self.Map.load() # TODO : only load the map when it's created, else draw previous map
+        self.handle_input()
 
-        list_sprite.update()
+        self.screen.fill((0,0,0)) # clear the screen
+        # Update
+        #print(list_sprite.sprites, list_wall.sprites)
+        #list_sprite.empty() # prevent memory overflow
+        #list_wall.empty()
+        self.Map.load() # TODO : ask to load a new level if necessary
+        #list_sprite.update()
         self.Player.update()
         
+        # Draw the game
         list_sprite.draw(self.screen)
         self.Player.draw(self.screen) # need to find a way to update and draw all entity at the same time
 
-        #print(list_sprite.sprites, list_wall.sprites)
-        # list_sprite.empty() # prevent memory overflow
-        # list_wall.empty()
-
-        # Draw on top of the game
+        # Draw on top of the game (for GUI)
         self.show_debug_info()
         pygame.display.flip()
 
@@ -72,17 +72,13 @@ class Game():
         # boocle du jeu
         running = True
         while running:
-            
-            self.handle_input()
-            self.update()
-            pygame.display.flip()
-
             # closing the window without crashing the game
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False # bloque l'entré dans la boucle de jeu
 
             
+            self.update()
             pygame.display.update()
             self.clock.tick(60) # limite le FPS à 60
 

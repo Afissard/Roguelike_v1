@@ -26,6 +26,7 @@ class Entity(pygame.sprite.Sprite):
     
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+        # TODO : add sprite animation
     
     def update(self):
         current_x = self.rect.x

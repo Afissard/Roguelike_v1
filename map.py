@@ -30,8 +30,10 @@ class Map():
                 for y in range(self.map.size[1]):
                     for tile_id in range(len(COLOR)):
                         if self.pixels[x,y] == COLOR[tile_id]:
-                            tile = Tile(x,y, tile_id +1)
+                            tile = Tile(x,y, tile_id +1) # TODO : offset x&y with the camera (center on player)
                             list_sprite.add(tile)
+                        else : 
+                            pass # TODO : draw the erro tile
             
             self.need_load = False # to change when generating a new level
 
