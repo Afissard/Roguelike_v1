@@ -2,16 +2,17 @@
 
 The objective of this project is to create a (finished) game that be run on a raspberry or any other low spec computer.
 
+---
 ## My idea (in french sorry):
 Inspiré du jeu de la vie de Conway et autre simulation de vie (Dwarf Fortress, etc):
 Le but est de simuler l'ssault d'un donjon générer procéduralement (nombre d'étage infini), et d'observer comment et jusqu'où sont capable d'allez les "héros".
 
----------------------------------
+
 ### Le monde se divise en 2 partie :
 Overworld : un hub avec l'entrée du donjon, une tarverne (repos + quêtes), des magasins, (arène pour duel pvp ?).
 Le donjon : Chaque niveau est procéduralement généré, avec des ennemis aléatoirement placé, tout les 10 niveaux un boss protège l'accès au niveau suivant.
 
----------------------------------
+---
 ### Les "héros" :
 But (dans l'ordre d'importance): 
 	1: Ne pas mourir
@@ -38,13 +39,14 @@ Le comportement de chaque héros est déterminer par une seed (4 bits = 1 stat) 
 - Tendance à la compétition -> pret à tout pour monter dans le classement (même tuer d'autres héros pour obtenir son inventaire)
 - Courage : tendance à mettre sa vie en danger ou à l'inverse fuir les combats/exploiter ses allié
 
----------------------------------
+---
 ### Les "ennemis" :
 But (dans l'ordre d'importance): 
 	1: Tuer un maximum de héros pour recevoir une promotion
 
+---
 # TODO :
-- *create a player* [done]
+- ~~create a player~~
 - A camera who follow the player
 - create enemy and a simple combat system
 - User interface
