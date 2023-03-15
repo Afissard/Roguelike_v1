@@ -1,4 +1,5 @@
 import pygame
+from camera import *
 
 # Tiles and Window setting
 TILE_SIZE = 16
@@ -14,6 +15,7 @@ COLOR = [
 ]
 
 # group of sprite and other
+#camera_group = CameraGroup()
 list_sprite = pygame.sprite.Group()
 list_wall = pygame.sprite.Group()
 #list_objet = pygame.sprite.Group()

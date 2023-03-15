@@ -5,6 +5,7 @@ Pillow ressources : https://stackoverflow.com/questions/138250/how-to-read-the-r
 import pygame
 from PIL import Image
 from constants import *
+from entity import *
 
 class Map():
     def __init__(self):
@@ -50,7 +51,6 @@ class Tile(pygame.sprite.Sprite):
     """
     def __init__(self, x, y, tile_id):
         pygame.sprite.Sprite.__init__(self)
-        self.x, self.y = x, y
         self.id = tile_id
         self.tile_data = {
             # id : texture path,        collision
@@ -60,6 +60,10 @@ class Tile(pygame.sprite.Sprite):
         # load texture
         self.image = pygame.image.load(self.tile_data[self.id][0]).convert_alpha()
         self.rect = self.image.get_rect()
+        # real position for the game
+        self.x = x
+        self.y = y
+        # virtual position for the camera (position draw on sreen)
         self.rect.x = TILE_SIZE * self.x
         self.rect.y = TILE_SIZE * self.y
 

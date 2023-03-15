@@ -22,7 +22,7 @@ class Setting():
 
 def main():
     setting = Setting()
-    setting.allow_print(False)
+    setting.allow_print(True)
     pygame.init()
     game = Game()
     game.run()
