@@ -2,6 +2,7 @@ import pygame, sys
 from global_var import *
 from camera import *
 from entity import *
+from gui import *
 
 class Game():
     def __init__(self):
@@ -10,9 +11,11 @@ class Game():
         self.clock = pygame.time.Clock()
         pygame.event.set_grab(False) # set to True if the game use the mouse
 
-        # setup 
+        # setup of the display
         self.camera_group = CameraGroup()
         self.player = Player((640,360), self.camera_group)
+
+        self.gui = Gui(self.screen)
 
 
     def run(self):
@@ -28,11 +31,13 @@ class Game():
                     if event.type == pygame.MOUSEWHEEL:
                         self.camera_group.zoom_scale += event.y * 0.03
 
-            self.screen.fill(COLOR[0])
+            self.screen.fill(COLOR[0]) # Clear the screen
 	    
             self.camera_group.update()
             self.camera_group.custom_draw(self.player)
+
+            self.gui.show_debug_info(self.clock, self.player)
 	    
             pygame.display.update()
-            self.clock.tick()
+            self.clock.tick(60)
 

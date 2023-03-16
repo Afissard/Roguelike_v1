@@ -2,8 +2,9 @@ import pygame
 from global_var import *
 
 class Entity(pygame.sprite.Sprite):
-	def __init__(self, pos, group):
+	def __init__(self, position, group):
 		super().__init__(group)
+		self.position = position # screen or game position ?
 		self.image = pygame.image.load('./image/player.png').convert_alpha()
 		# self.images = {
         #     "down" :  self.get_image(0, 0),
@@ -11,7 +12,8 @@ class Entity(pygame.sprite.Sprite):
         #     "left" :  self.get_image(32, 0),
         #     "right" : self.get_image(48, 0)
         # }
-		self.rect = self.image.get_rect(center = pos)
+		self.rect = self.image.get_rect(center = self.position)
+		self.coordinate = [self.rect.centerx, self.rect.centery]
 		self.direction = pygame.math.Vector2()
 		self.speed = 4
 
@@ -33,18 +35,18 @@ class Entity(pygame.sprite.Sprite):
 			self.direction.x = 0
 	
 	def collision(self):
-		self.previous_position = self.position
+		self.previous_coordinate = self.coordinate
 		list_collided_wall = pygame.sprite.spritecollide(self, list_wall, False)
 		if len(list_collided_wall) > 0:
-			self.rect.centerx = self.previous_position[0]
-			self.rect.centery = self.previous_position[1]
+			self.rect.centerx = self.previous_coordinate[0]
+			self.rect.centery = self.previous_coordinate[1]
 		else :
-			self.position = [self.rect.centerx, self.rect.centery]
+			self.coordinate = [self.rect.centerx, self.rect.centery]
 
 	def update(self):
 		self.input()
 		self.rect.center += self.direction * self.speed
-		#self.collision()
+		self.collision()
 
 class Player(Entity):
     """
@@ -52,5 +54,4 @@ class Player(Entity):
     """
     def __init__(self, pos, group):
         Entity.__init__(self, pos, group)
-        print("player created")
         # there will be more soon...
