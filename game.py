@@ -3,6 +3,7 @@ from global_var import *
 from camera import *
 from entity import *
 from gui import *
+from map import *
 
 class Game():
     def __init__(self):
@@ -13,14 +14,14 @@ class Game():
 
         # setup of the display
         self.camera_group = CameraGroup()
-        self.player = Player((640,360), self.camera_group)
-
+        self.map = Map()
+        self.player = Player((32,32), self.camera_group)
         self.gui = Gui(self.screen)
 
-
     def run(self):
-
-        # game loop
+        """
+        Game loop
+        """
         running = True
         while running:
             for event in pygame.event.get():
@@ -32,7 +33,8 @@ class Game():
                         self.camera_group.zoom_scale += event.y * 0.03
 
             self.screen.fill(COLOR[0]) # Clear the screen
-	    
+
+            self.map.load(self.camera_group)
             self.camera_group.update()
             self.camera_group.custom_draw(self.player)
 
