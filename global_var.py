@@ -11,7 +11,8 @@ COLOR = [
     (0,0,0),        # Black
     (255,241,232),  # White
     (255,0,77),     # Red
-    (0,228,54)      # Light Green
+    (0,228,54),     # Light Green
+    (255,236,39)    # Yellow
 ]
 
 # group of sprite and other

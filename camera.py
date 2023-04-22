@@ -23,7 +23,7 @@ class CameraGroup(pygame.sprite.Group):
 		self.camera_rect = pygame.Rect(l,t,w,h)
 
 		# ground
-		self.ground_surf = pygame.image.load('./image/default_map.png').convert_alpha()
+		self.ground_surf = pygame.image.load('./image/default_map.png').convert_alpha() # TODO add a way to change ground image
 		self.ground_rect = self.ground_surf.get_rect(topleft = (0,0))
 
 		# camera speed
@@ -143,7 +143,7 @@ class CameraGroup(pygame.sprite.Group):
 		# active elements
 		for sprite in sorted(self.sprites(),key = lambda sprite: sprite.rect.centery):
 			offset_pos = sprite.rect.topleft - self.offset + self.internal_offset
-			self.internal_surf.blit(sprite.image,offset_pos)
+			self.internal_surf.blit(sprite.image, offset_pos)
 
 		scaled_surf = pygame.transform.scale(self.internal_surf,self.internal_surface_size_vector * self.zoom_scale)
 		scaled_rect = scaled_surf.get_rect(center = (self.half_w,self.half_h))

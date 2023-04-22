@@ -1,3 +1,10 @@
+# Death of this project ... :
+I decided to end this project because of optimization issue : for large scale map, the game have a lot of lag.
+This is because of my way of rendering the map, all tile are independent sprite and this wasn't a good idea.
+To fix that issue I would need to rewrite most of my current code. This is why I prefer close this repo but keep
+it as a mark of my progress in learning game development.
+
+---
 # My Roguelike version n°1 :
 
 The objective of this project is to create a (finished) game that be run on a raspberry or any other low spec computer.
@@ -45,9 +52,9 @@ But (dans l'ordre d'importance):
 	1: Tuer un maximum de héros pour recevoir une promotion
 
 ---
-# TODO :
+# TODO list :
 - ~~create a player~~
-- A camera who follow the player
+- ~~A camera who follow the player~~ (need to fix bug with ground rendering)
 - create enemy and a simple combat system
 - User interface
 - generate random enemy for each level

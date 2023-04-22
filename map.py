@@ -1,6 +1,10 @@
 """
 Pillow resources : https://stackoverflow.com/questions/138250/how-to-read-the-rgb-value-of-a-given-pixel-in-python
 
+TODO : A solution for ground overlap on sprite : get all the ground tile 
+and fusion them to make a big image to display as background 
+(may take some time when loading a new level)...
+
 """
 import pygame
 from PIL import Image
@@ -31,10 +35,10 @@ class Map():
                 for y in range(self.map.size[1]):
                     for tile_id in range(len(COLOR)):
                         if self.pixels[x,y] == COLOR[tile_id]:
-                            tile = Tile(x,y, tile_id +1, group) # TODO : offset x&y with the camera (center on player)
+                            tile = Tile(x,y, tile_id +1, group)
                             group.add(tile)
                         else : 
-                            pass # TODO : draw the error tile
+                            pass # TODO : draw the error tile as background
             
             self.need_load = False # to change when generating a new level
 
